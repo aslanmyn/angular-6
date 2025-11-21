@@ -1,0 +1,20 @@
+.profile {
+  max-width: 480px;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+}
+
+ul { list-style: none; padding: 0; }
+li { margin-bottom: 0.4rem; }
+
+button {
+  margin-top: 0.7rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}

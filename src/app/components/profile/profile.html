@@ -1,0 +1,14 @@
+@if (user()) {
+  <section class="profile">
+    <h1>Profile</h1>
+
+    <ul>
+      <li><strong>UID:</strong> {{ user()?.uid }}</li>
+      <li><strong>Email:</strong> {{ user()?.email }}</li>
+    </ul>
+
+    <button (click)="logout()">Logout</button>
+  </section>
+} @else {
+  <p>Loading user...</p>
+}
