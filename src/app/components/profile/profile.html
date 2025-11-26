@@ -1,14 +1,33 @@
 @if (user()) {
   <section class="profile">
-    <h1>Profile</h1>
+    <h1 class="profile__title">My profile</h1>
 
-    <ul>
-      <li><strong>UID:</strong> {{ user()?.uid }}</li>
-      <li><strong>Email:</strong> {{ user()?.email }}</li>
-    </ul>
+    <div class="profile__card">
+      <div class="profile__avatar">
+        {{ user()?.email?.charAt(0) | uppercase }}
+      </div>
 
-    <button (click)="logout()">Logout</button>
+      <div class="profile__info">
+        <div class="profile__row">
+          <span class="profile__label">Email</span>
+          <span class="profile__value">{{ user()?.email }}</span>
+        </div>
+
+        <div class="profile__row">
+          <span class="profile__label">UID</span>
+          <span class="profile__value profile__value--code">
+            {{ user()?.uid }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile__actions">
+      <button type="button" (click)="logout()">Logout</button>
+    </div>
   </section>
 } @else {
-  <p>Loading user...</p>
+  <section class="profile">
+    <p>Loading user...</p>
+  </section>
 }

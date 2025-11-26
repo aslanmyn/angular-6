@@ -5,12 +5,14 @@
     <li><a routerLink="/about" routerLinkActive="active">About</a></li>
     <li><a routerLink="/items" routerLinkActive="active">Items</a></li>
 
-    @if (user$ | async as user) {
+    @if (user$ | async; as user) {
+
       <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
       <li>
         <button type="button" class="nav-link-button" (click)="logout()">Logout</button>
       </li>
     } @else {
+
       <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
       <li><a routerLink="/signup" routerLinkActive="active">Signup</a></li>
     }

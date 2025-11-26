@@ -23,7 +23,7 @@ h3 { margin: 0; font-size: 1.05rem; }
 .muted { color: var(--muted); margin: 0; }
 .meta { display:flex; justify-content:space-between; align-items:center; font-weight:600; }
 
-.actions { margin-top: 0.6rem; }          /* ← чтобы не прилипало */
+.actions { margin-top: 0.6rem; }
 .btn {
   display:inline-block;
   padding: 0.45rem 0.7rem;

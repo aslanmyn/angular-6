@@ -1,26 +1,45 @@
-<h1>Login</h1>
+<section class="auth">
+  <div class="auth__card">
+    <h1 class="auth__title">Welcome back</h1>
+    <p class="auth__subtitle">Log in with your email and password.</p>
 
-<form (ngSubmit)="submit()" class="auth-form">
-  <label>
-    Email
-    <input type="email" name="email" [(ngModel)]="email" required />
-  </label>
+    @if (error()) {
+      <div class="auth__error">
+        {{ error() }}
+      </div>
+    }
 
-  <label>
-    Password
-    <input type="password" name="password" [(ngModel)]="password" required />
-  </label>
+    <form (ngSubmit)="submit()" class="auth__form">
+      <label class="auth__field">
+        <span>Email</span>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          placeholder="you@example.com"
+        />
+      </label>
 
-  <button type="submit" [disabled]="loading()">
-    @if (loading()) { Logging in... } @else { Login }
-  </button>
+      <label class="auth__field">
+        <span>Password</span>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          placeholder="••••••••"
+        />
+      </label>
 
-  @if (error()) {
-    <p class="error">{{ error() }}</p>
-  }
+      <button type="submit" [disabled]="loading()" class="auth__button">
+        @if (loading()) { Logging in… } @else { Log in }
+      </button>
+    </form>
 
-  <p class="hint">
-    Don’t have an account?
-    <a routerLink="/signup">Sign up</a>
-  </p>
-</form>
+    <p class="auth__hint">
+      Don’t have an account?
+      <a routerLink="/signup">Sign up</a>
+    </p>
+  </div>
+</section>
