@@ -1,40 +1,43 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Location } from '@angular/common';
-import { ItemsService } from '../../../services/items.service';
-import { Item } from '../../../models/item.model';
-import { switchMap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+
+import * as ItemsActions from '../state/items.actions';
+import {
+  selectSelectedItem,
+  selectItemLoading,
+  selectItemError,
+} from '../state/items.selectors';
+import { ItemsState } from '../state/items.reducer';
 
 @Component({
   selector: 'app-item-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './item-details.html',
-  styleUrls: ['./item-details.css']
+  styleUrls: ['./item-details.css'],
 })
 export class ItemDetails {
   private route = inject(ActivatedRoute);
-  private api = inject(ItemsService);
   private location = inject(Location);
+  private store: Store<ItemsState> = inject(Store);
 
-  loading = signal(true);
-  error = signal<string | null>(null);
-  item: Item | null = null;
+  item$ = this.store.select(selectSelectedItem);
+  loading$ = this.store.select(selectItemLoading);
+  error$ = this.store.select(selectItemError);
 
   constructor() {
-    this.route.paramMap
-      .pipe(switchMap(pm => {
-        const id = pm.get('id');
-        this.loading.set(true);
-        this.error.set(null);
-        return this.api.getItemById(String(id));
-      }))
-      .subscribe({
-        next: (it: Item) => { this.item = it; this.loading.set(false); },
-        error: (err: unknown) => { this.error.set(String(err)); this.loading.set(false); }
-      });
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.store.dispatch(ItemsActions.loadItem({ id }));
+      }
+    });
   }
 
-  back() { this.location.back(); }
+  back() {
+    this.location.back();
+  }
 }

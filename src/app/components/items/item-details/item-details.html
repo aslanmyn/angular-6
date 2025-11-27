@@ -1,7 +1,11 @@
-@if (loading()) {
+@let item = item$ | async;
+@let loading = loading$ | async;
+@let error = error$ | async;
+
+@if (loading) {
   <section class="state">Loading…</section>
-} @else if (error()) {
-  <section class="state error">{{ error() }}</section>
+} @else if (error) {
+  <section class="state error">{{ error }}</section>
 } @else if (item) {
   <article class="details">
     <a class="back" (click)="back()">← Back</a>
@@ -14,15 +18,35 @@
       </div>
 
       <ul class="specs">
-        <li><span class="k">ID</span><span class="v">#{{ item.id }}</span></li>
-        <li><span class="k">Category</span><span class="v">{{ item.category }}</span></li>
-        <li><span class="k">Brand</span><span class="v">{{ item.brand || '—' }}</span></li>
-        <li><span class="k">Price</span><span class="v">₸ {{ item.price }}</span></li>
-        <li><span class="k">Rating</span><span class="v">★ {{ item.rating }}</span></li>
-        <li><span class="k">Stock</span><span class="v">{{ item.stock }}</span></li>
+        <li>
+          <span class="k">ID</span>
+          <span class="v">#{{ item.id }}</span>
+        </li>
+        <li>
+          <span class="k">Category</span>
+          <span class="v">{{ item.category }}</span>
+        </li>
+        <li>
+          <span class="k">Brand</span>
+          <span class="v">{{ item.brand || '—' }}</span>
+        </li>
+        <li>
+          <span class="k">Price</span>
+          <span class="v">₸ {{ item.price }}</span>
+        </li>
+        <li>
+          <span class="k">Rating</span>
+          <span class="v">★ {{ item.rating }}</span>
+        </li>
+        <li>
+          <span class="k">Stock</span>
+          <span class="v">{{ item.stock }}</span>
+        </li>
         <li class="desc">
           <span class="k">Description</span>
-          <p class="v">{{ item.description }}</p>
+          <p class="v">
+            {{ item.description }}
+          </p>
         </li>
       </ul>
     </div>
