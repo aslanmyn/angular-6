@@ -8,7 +8,8 @@
   <section class="state error">{{ error }}</section>
 } @else if (item) {
   <article class="details">
-    <a class="back" (click)="back()">← Back</a>
+
+    <a class="back" routerLink="/items">← Back</a>
 
     <h1 class="title">{{ item.title }}</h1>
 
