@@ -1,11 +1,11 @@
 {
   "name": "Items Catalog",
-  "short_name": "Catalog",
+  "short_name": "Items",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
-  "theme_color": "#0f172a",
-  "background_color": "#020617",
+  "theme_color": "#020617",
+  "background_color": "#ffffff",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
