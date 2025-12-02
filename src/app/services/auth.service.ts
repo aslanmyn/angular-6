@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private auth = inject(Auth);
 
-  // Observable текущего пользователя (null, если не залогинен)
+
   currentUser$: Observable<User | null> = authState(this.auth);
 
   async signup(email: string, password: string): Promise<void> {

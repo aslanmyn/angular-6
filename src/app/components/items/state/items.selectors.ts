@@ -4,7 +4,7 @@ import { ItemsState } from './items.reducer';
 export const selectItemsState =
   createFeatureSelector<ItemsState>('items');
 
-// list
+
 export const selectItems = createSelector(
   selectItemsState,
   state => state.items
@@ -20,7 +20,7 @@ export const selectItemsError = createSelector(
   state => state.itemsError
 );
 
-// details
+
 export const selectSelectedItem = createSelector(
   selectItemsState,
   state => state.selectedItem
