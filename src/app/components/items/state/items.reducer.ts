@@ -25,7 +25,7 @@ export const initialState: ItemsState = {
 export const itemsReducer = createReducer(
   initialState,
 
-  // list
+
   on(ItemsActions.loadItems, state => ({
     ...state,
     itemsLoading: true,
@@ -42,7 +42,7 @@ export const itemsReducer = createReducer(
     itemsError: error,
   })),
 
-  // details
+
   on(ItemsActions.loadItem, state => ({
     ...state,
     itemLoading: true,
